@@ -16,7 +16,7 @@ steps:
     conjurapplianceurl: '$(conjur-appliance-url)'
     conjuraccount: '$(conjur-account)'
     conjurusername: $(conjur-username)'
-    conjurapikey: '$(API_KEY)''
+    conjurapikey: '$(API_KEY)'
     ignoreSsl: true
 
 - bash: |
