@@ -13,10 +13,10 @@ steps:
 
 - task: GetConjurSecret@1
   inputs:
-    conjurapplianceurl: '$(conjur-appliance-url)'
-    conjuraccount: '$(conjur-account)'
-    conjurusername: $(conjur-username)'
-    conjurapikey: '$(API_KEY)'
+    conjurapplianceurl: $(conjur-appliance-url)
+    conjuraccount: $(conjur-account)
+    conjurusername: $(conjur-username)
+    conjurapikey: $(conjur-password)
     ignoreSsl: true
 
 - bash: |
