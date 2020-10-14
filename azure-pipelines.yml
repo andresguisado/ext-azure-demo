@@ -2,18 +2,21 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: DownloadSecureFile@1
-  name: conjurCert
-  displayName: 'Download CA certificate'
-  inputs:
-    secureFile: 'conjur-dev.pem'
+- bash: |
+    openssl s_client -showcerts -connect dap-master2.cyberarkdemo:443 < /dev/null 2> /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > dap-cert.pem
+
+#- task: DownloadSecureFile@1
+#  name: conjurCert
+#  displayName: 'Download CA certificate'
+#  inputs:
+#    secureFile: 'conjur-dev.pem'
 
 - task: GetConjurSecret@1
   inputs:
-    conjurapplianceurl: 'https://dap-master2.cyberarkdemo.net'
-    conjuraccount: 'cybr'
-    conjurusername: 'dev/cicd/azuredevops/azuredevops01'
-    conjurapikey: $(API_KEY)
+    conjurapplianceurl: '$(conjur-appliance-url)'
+    conjuraccount: '$(conjur-account)'
+    conjurusername: $(conjur-username)'
+    conjurapikey: '$(API_KEY)''
     ignoreSsl: true
 
 - bash: |
